@@ -25,6 +25,18 @@ public class MatchingService {
         }
     }
 
+    public List<SiteUser> highScore(){
+        List<SiteUser> users = userRepository.findByScore(8);
+        users.addAll(userRepository.findByScore(7));
+        if(userRepository.findByScore(6)!=null){
+            users.addAll(userRepository.findByScore(6));
+            return users;
+        }else{
+            users.addAll(userRepository.findByScore(5));
+            return users;
+        }
+    }
+
     public void locateScore(SiteUser siteUser, SiteUser user){
         String locate = siteUser.getAddress();
         locate = locate.substring(0,locate.lastIndexOf(" "));

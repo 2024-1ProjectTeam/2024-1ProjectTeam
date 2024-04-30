@@ -19,5 +19,7 @@ public interface SpringDataJpaUserRepository extends JpaRepository<SiteUser, Lon
 
     List<SiteUser> findByWorker(boolean worker);
 
+    List<SiteUser> findByScore(int score);
+
     List<SiteUser> findAll();
 }

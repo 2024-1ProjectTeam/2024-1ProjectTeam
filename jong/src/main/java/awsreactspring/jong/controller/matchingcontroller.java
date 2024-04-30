@@ -33,10 +33,10 @@ public class matchingcontroller {
       //일단 환자가 매칭을 누르면 간병인을 추천해주는 것으로 개발.
       List<SiteUser> users = userService.findWorkers(!siteUser.isWorker());
 
-      
-      
+      matchingService.matchingScore(users, siteUser);
+      List<SiteUser> Score = matchingService.highScore();
 
-      return users;
+      return Score;
     }
     
 

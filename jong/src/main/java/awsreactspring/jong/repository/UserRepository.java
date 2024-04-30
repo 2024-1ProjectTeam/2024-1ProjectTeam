@@ -13,6 +13,7 @@ public interface UserRepository {
     Optional<SiteUser> findByEmail(String email);
     Optional<SiteUser> findByPhone(String phone);
     List<SiteUser> findByworker(boolean worker);
+    List<SiteUser> findByScore(int score);
     List<SiteUser> findAll();
     
 }
