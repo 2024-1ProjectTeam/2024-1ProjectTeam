@@ -1,5 +1,6 @@
 package awsreactspring.jong.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,4 +16,8 @@ public interface SpringDataJpaUserRepository extends JpaRepository<SiteUser, Lon
     Optional<SiteUser> findById(Long id);    
 
     Optional<SiteUser> findByPhone(String phone);
+
+    List<SiteUser> findByWorker(boolean worker);
+
+    List<SiteUser> findAll();
 }
