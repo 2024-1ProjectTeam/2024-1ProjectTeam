@@ -7,6 +7,7 @@ import awsreactspring.jong.domain.CrawlingData;
 import awsreactspring.jong.repository.CrawlRepository;
 import awsreactspring.jong.repository.UserRepository;
 import awsreactspring.jong.service.CrawlingService;
+import awsreactspring.jong.service.MatchingService;
 import awsreactspring.jong.service.UserService;
 
 @Configuration
@@ -27,5 +28,10 @@ public class SpringConfig {
     @Bean
     public CrawlingService crawlingService(){
         return new CrawlingService(crawlRepository);
+    }
+
+    @Bean
+    public MatchingService matchingService(){
+        return new MatchingService(userRepository);
     }
 }

@@ -49,7 +49,7 @@ public class MatchingService {
 
     public void ageScore(SiteUser user){
         String birth = user.getBirth();
-        String[] birtharr = birth.split(" ");
+        String[] birtharr = birth.split("\\.");
         int year = Integer.parseInt(birtharr[0]);
 
         if(year < 30 | year > 60){
