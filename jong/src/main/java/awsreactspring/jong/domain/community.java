@@ -1,6 +1,7 @@
 package awsreactspring.jong.domain;
 
-import io.micrometer.common.lang.Nullable;
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,50 +9,61 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class community {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(nullable = false)
-    long commuId;
+public class Community {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long userid; //이거 필요있나싶긴함. 이거 필요없으면 postid를 id로바꾸고 service랑 다 수정다시해야함. 금방하는것. id가 기본 위의 애너테이션을 통해 자동이므로...
+    Long postid;
+    @Column(length = 20)
+    String title;
+    @Column(columnDefinition = "TEXT")
+    String content;
+    boolean completed;
+    LocalDateTime createdtTime = LocalDateTime.now();
 
-    @Column(nullable = false)
-    long view;
-    @Column(nullable = false)
-    String regidate;    
-    @Column(nullable = false)
-    String corrdate;    
-    @Column(nullable = false)
-    String posttext;
+    public LocalDateTime getCreatedtTime() {
+        return createdtTime;
+    }
+    public void setCreatedtTime(LocalDateTime createdtTime) {
+        this.createdtTime = createdtTime;
+    }
+    public Long getid() {
+        return userid;
+    }
+    public void setid(Long userid) {
+        this.userid = userid;
+    }   
+
+    public String getTitle(){
+        return title;
+    }
+
+    public void setTitle(String title){
+        this.title = title;
+    }
+
+    public String getContent(){
+        return content;
+    }
+
+    public void setContent(String content){
+        this.content = content;
+    }
+
+    public boolean getCompleted(){
+        return completed;
+    }
+
+    public void setCompleted(boolean completed){
+        this.completed = completed;
+    }
     
-    public long getCommuId() {
-        return commuId;
+    public Long getpostid() {
+        return postid;
     }
-    public void setCommuId(long commuId) {
-        this.commuId = commuId;
-    }
-    public long getView() {
-        return view;
-    }
-    public void setView(long view) {
-        this.view = view;
-    }
-    public String getRegidate() {
-        return regidate;
-    }
-    public void setRegidate(String regidate) {
-        this.regidate = regidate;
-    }
-    public String getCorrdate() {
-        return corrdate;
-    }
-    public void setCorrdate(String corrdate) {
-        this.corrdate = corrdate;
-    }
-    public String getPosttext() {
-        return posttext;
-    }
-    public void setPosttext(String posttext) {
-        this.posttext = posttext;
-    }
-
+    public void setpostid(Long postid) {
+        this.postid = postid;
+    }   
+ 
 
 
 }
