@@ -45,25 +45,25 @@ public class CommunityController {
     
     @GetMapping("/api/Community/{postid}") // postid로 조회
     public ResponseEntity<Community> detailCommunity(@PathVariable Long postid){
-        Community community = communityService.findByPostId(postid);
+        Community community = communityService.findByPostid(postid);
         return ResponseEntity.ok(community);
     }
     
-    @GetMapping("/api/Community/{userid}") // userid로 조회
-    public ResponseEntity<Community> GetByUserIdCommunity(@PathVariable Long userid){
-        Community community = communityService.findCommunityByUserId(userid);
-        return ResponseEntity.ok(community);
-    }
+    // @GetMapping("/api/Community/{userid}") // userid로 조회
+    // public ResponseEntity<Community> GetByUserIdCommunity(@PathVariable Long userid){
+    //     Community community = communityService.findCommunityByUserid(userid);
+    //     return ResponseEntity.ok(community);
+    // }
     
     @GetMapping("/api/Community/{title}") // title로 조회
-    public ResponseEntity<Community> GetByTitleCommunity(@PathVariable String title){
-        Community community = communityService.findCommunityByTitle(title);
+    public ResponseEntity<List<Community>> GetByTitleCommunity(@PathVariable String title){
+        List<Community> community = communityService.findCommunityByTitle(title);
         return ResponseEntity.ok(community);
     }
     
     @GetMapping("/api/Community/{content}") // content로 조회
-    public ResponseEntity<Community> GetByContentCommunity(@PathVariable String content){
-        Community community = communityService.findCommunityByTitle(content);
+    public ResponseEntity<List<Community>> GetByContentCommunity(@PathVariable String content){
+        List<Community> community = communityService.findCommunityByContent(content);
         return ResponseEntity.ok(community);
     }
 

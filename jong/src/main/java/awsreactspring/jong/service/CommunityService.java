@@ -22,54 +22,92 @@ public class CommunityService {
         return communityRepository.save(community);
     }
 
-    public Community findCommunityByUserId(Long userid) { // 유저 아이디를 통해 게시물조회
-        return communityRepository.findByUserId(userid)
-                .orElseThrow(() -> new IllegalStateException("존재하지 않습니다."));
-    }
+    // public Community findCommunityByUserid(Long userid) { // 유저 아이디를 통해 게시물조회
+    //     return communityRepository.findByUserid(userid)
+    //             .orElseThrow(() -> new IllegalStateException("존재하지 않습니다."));
+    // }
 
-    public Community findCommunityByTitle(String title){ //제목으로 게시물조회
-        Optional<Community> optionalCommunity = communityRepository.findByTitle(title);
-        if(optionalCommunity.isEmpty()){
-            throw new IllegalStateException("잘못된 요청입니다.");
+    // public Community findCommunityByTitle(String title){ //제목으로 게시물조회
+    //     Optional<Community> optionalCommunity = communityRepository.findByTitleContaining(title);
+    //     if(optionalCommunity.isEmpty()){
+    //         throw new IllegalStateException("잘못된 요청입니다.");
+    //     }else{
+    //         return optionalCommunity.get();
+    //     }
+    // }
+
+    public List<Community> findCommunityByTitle(String title){  //제목으로 게시물 조회
+        List<Community> communities = communityRepository.findByTitleContaining(title);
+        if(communities.isEmpty()){
+            throw new IllegalStateException("해당하는 제목의 게시글 없음");
         }else{
-            return optionalCommunity.get();
+            return communities;
         }
     }
 
-    public Community findCommunityByContent(String content){ //내용으로 게시물조회
-        Optional<Community> optionalCommunity = communityRepository.findByContent(content);
-        if(optionalCommunity.isEmpty()){
+    public List<Community> findCommunityByContent(String content){ //내용으로 게시물조회
+        List<Community> communities = communityRepository.findByContentContaining(content);
+        if(communities.isEmpty()){
             throw new IllegalStateException("잘못된 요청입니다.");
         }else{
-            return optionalCommunity.get();
+            return communities;
         }
     }
 
     /**public Community changeCommunity(Long postid, Community changedCommunity){ // 게시글 아이디를 이용하여, 제목 및 내용 수정
-        Community existingCommunity = findByPostId(postid);
+        Community existingCommunity = findByPostid(postid);
 
         existingCommunity.setTitle(changedCommunity.getTitle());
         existingCommunity.setContent(changedCommunity.getContent());
 
         return communityRepository.save(existingCommunity);
     } */
-    public Community changeCommunity(Long postid, Community changedCommunity) { //게시글 수정
-        Community existingCommunity = findByPostId(postid);
+    public Community changeCommunity(Long postid, Community changedCommunity) { //게시글 수정 postid ->
+        Community existingCommunity = findByPostid(postid);
+        
+        if(existingCommunity != null){
+            existingCommunity.setTitle(changedCommunity.getTitle());
+            existingCommunity.setContent(changedCommunity.getContent());
+            return communityRepository.save(existingCommunity);
+        }
+        else{
+            System.out.println("해당 id로 게시글을 찾을수 없음");
+            return null;
+        }
     
-        existingCommunity.setTitle(changedCommunity.getTitle());
-        existingCommunity.setContent(changedCommunity.getContent());
-    
-        return communityRepository.save(existingCommunity);
     } 
 
+
+    // public void changeCommunity(Long postid, Community changedCommunity) { //게시글 수정 postid ->
+    //     Community existingCommunity = findByPostid(postid);
+        
+    //     if(existingCommunity != null){
+    //         existingCommunity.setTitle(changedCommunity.getTitle());
+    //         existingCommunity.setContent(changedCommunity.getContent());
+    //     }
+    //     else{
+    //         System.out.println("해당 id로 게시글을 찾을수 없음");
+    //     }
+    
+    // } 
+
+    // public Community changeCommunity(Long postid, Community changedCommunity) { //게시글 수정
+    //     Community existingCommunity = findByPostId(postid);
+    
+    //     existingCommunity.setTitle(changedCommunity.getTitle());
+    //     existingCommunity.setContent(changedCommunity.getContent());
+    
+    //     return communityRepository.save(existingCommunity);
+    // } 
+
     /**public void deleteCommunity(Long postid){  // 게시글 아이디를 이용하여,삭제
-        Community existingCommunity = findByPostId(postid);
+        Community existingCommunity = findByPostid(postid);
 
         communityRepository.delete(existingCommunity);
     }*/
     
     public void deleteCommunity(Long postid) {    // 게시글 아이디를 이용하여,삭제
-        Optional<Community> existingCommunityOptional = communityRepository.findByPostId(postid);
+        Optional<Community> existingCommunityOptional = communityRepository.findByPostid(postid);
         Community existingCommunity = existingCommunityOptional.orElseThrow(() -> new NoSuchElementException("해당 ID의 게시글이 존재하지 않습니다."));
         
         communityRepository.delete(existingCommunity);;
@@ -79,8 +117,8 @@ public class CommunityService {
         return communityRepository.findAll();
     }
 
-    public Community findByPostId(Long postid){  // 게시글 id를 통한 조회
-        return communityRepository.findByPostId(postid).orElse(null);
+    public Community findByPostid(Long postid){  // 게시글 id를 통한 조회  ??
+        return communityRepository.findByPostid(postid).orElse(null);
         
     }
 }

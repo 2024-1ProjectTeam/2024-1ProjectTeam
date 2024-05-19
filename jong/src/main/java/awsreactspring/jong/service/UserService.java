@@ -1,6 +1,5 @@
 package awsreactspring.jong.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import awsreactspring.jong.domain.SiteUser;
@@ -57,10 +56,6 @@ public class UserService {
         getUser.setBirth(user.getBirth());
         getUser.setName(user.getName());
         getUser.setPassword(user.getPassword());
-    }
-
-    public List<SiteUser> findWorkers(boolean worker){
-        return userRepository.findByworker(worker);
     }
 
     public void validateDuplicatiteUser(SiteUser user){
