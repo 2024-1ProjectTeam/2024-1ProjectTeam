@@ -26,17 +26,29 @@ public class Comment {
     private Community community;
 
     @ManyToOne
-    @JoinColumn(name ="siteuser_id")
+    @JoinColumn(name = "site_user_id")
     private SiteUser siteuser;
 
 
-    public Long getId() {
+
+
+    public SiteUser getSiteuser() {
+        return siteuser;
+    }
+
+
+    public void setSiteuser(SiteUser siteuser) {
+        this.siteuser = siteuser;
+    }
+
+
+    public Long getCommentId() {
         return commentid;
     }
 
 
-    public void setId(Long id) {
-        this.commentid = id;
+    public void setCommentId(Long commentid) {
+        this.commentid = commentid;
     }
 
 
@@ -68,14 +80,7 @@ public class Comment {
         this.community = community;
     }
     
-    public SiteUser getSiteuser() {
-        return siteuser;
-    }
-
-
-    public void setSiteuser(SiteUser siteuser) {
-        this.siteuser = siteuser;
-    }
+    
 
 
 }

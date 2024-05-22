@@ -1,18 +1,23 @@
 package awsreactspring.jong.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import awsreactspring.jong.domain.Comment;
+import awsreactspring.jong.domain.Community;
+import awsreactspring.jong.domain.SiteUser;
 
-public interface SpringDataJpaCommentRepository extends JpaRepository<Comment,Long>{
+public interface SpringDataJpaCommentRepository extends JpaRepository<Comment,Long>, CommentRepository {
 
     Comment save(Comment comment); //저장
 
-    List<Comment> findByPostId(Long postid); // 게시판 아이디를 이용하여 댓글 조회
+    List<Comment> findByCommentid(Long commentid);
 
-    List<Comment> findByUserId(Long userid); // 유저 아이디를 이용하여 댓글 조회
+    List<Comment> findAllByCommunity(Community community); // 게시판 아이디를 이용하여 댓글 조회
+
+    List<Comment> findAllBySiteuser(SiteUser siteuser); // 유저 아이디를 이용하여 댓글 조회
 
     void deleteById(Long commentid); // 댓글 삭제
     

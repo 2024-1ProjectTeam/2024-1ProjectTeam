@@ -6,13 +6,13 @@ import java.util.Optional;
 import awsreactspring.jong.domain.Community;
 
 public interface CommunityRepository {
-    Optional<Community> findByUserId(Long userid);
+    // Optional<Community> findByUserid(Long userid);
 
-    Optional<Community> findByPostId(Long postid);
+    Optional<Community> findByPostid(Long postid);
 
-    Optional<Community> findByTitle(String title);
+    List<Community> findByTitleContaining(String title);
 
-    Optional<Community> findByContent(String content);    
+    List<Community> findByContentContaining(String content);    
 
     List<Community> findAll();
 
