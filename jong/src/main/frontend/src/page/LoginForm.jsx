@@ -1,6 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import styled, { css } from 'styled-components';
+import theme from '../styles/Theme';
+
 
 const LoginForm = () =>{
     const {register, handleSubmit} = useForm();
@@ -17,15 +20,21 @@ const LoginForm = () =>{
         }
 
     return(
-        <form onSubmit={handleSubmit(clickLogin)}>
-            <label htmlFor="email">이메일</label>
-            <input id="email" type="email" placeholder="xx@email.com" {...register("email")}/>
-            <label htmlFor="password">비밀번호</label>
-            <input id="password" type="password" placeholder="password" {...register("password")}/>
-            <button type="submit">로그인</button>
-        </form>
+        <LabelDiv>
+            <form onSubmit={handleSubmit(clickLogin)}>
+                <label htmlFor="email">이메일</label>
+                <input id="email" type="email" placeholder="xx@email.com" {...register("email")}/>
+                <label htmlFor="password">비밀번호</label>
+                <input id="password" type="password" placeholder="password" {...register("password")}/>
+                <button type="submit">로그인</button>
+            </form>
+        </LabelDiv>
     )
 
 }
 
 export default LoginForm;
+
+const LabelDiv = styled.div`
+  ${theme.flex.flexBox}
+`;
