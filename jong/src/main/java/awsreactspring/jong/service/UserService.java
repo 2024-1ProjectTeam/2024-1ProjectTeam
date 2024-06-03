@@ -1,6 +1,7 @@
 package awsreactspring.jong.service;
 
 import java.util.Optional;
+import java.util.List;
 
 import awsreactspring.jong.domain.SiteUser;
 import awsreactspring.jong.repository.UserRepository;
@@ -64,5 +65,8 @@ public class UserService {
         userRepository.findByPhone(user.getPhone())
             .ifPresent(m -> {throw new IllegalStateException("이미 존재하는 전화번호입니다.");});
     }
+
+    // public List<SiteUser> Workers(boolean ){
+    // }
 
 }

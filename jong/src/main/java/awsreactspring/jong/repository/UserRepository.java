@@ -1,6 +1,7 @@
 package awsreactspring.jong.repository;
 
 import java.util.Optional;
+import java.util.List;
 
 import awsreactspring.jong.domain.SiteUser;
 
@@ -11,5 +12,5 @@ public interface UserRepository {
     Optional<SiteUser> findByName(String name);
     Optional<SiteUser> findByEmail(String email);
     Optional<SiteUser> findByPhone(String phone);
-    
+    List<SiteUser> findByScore(int Score);
 }

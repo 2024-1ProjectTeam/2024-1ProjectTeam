@@ -1,6 +1,7 @@
 package awsreactspring.jong.repository;
 
 import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -16,6 +17,8 @@ public interface SpringDataJpaUserRepository extends JpaRepository<SiteUser, Lon
     Optional<SiteUser> findById(Long id);    
 
     Optional<SiteUser> findByPhone(String phone);
+
+    List<SiteUser> findByScore(int Score);
 
     
 }

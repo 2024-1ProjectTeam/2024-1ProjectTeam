@@ -17,13 +17,10 @@ public class SiteUser {
     String birth;
     String address;
     String phone;
+    int score;
+    String sex;
+    Boolean worker;
 
-    public Long getid() {
-        return id;
-    }
-    public void setid(Long id) {
-        this.id = id;
-    }    
     public String getEmail() {
         return email;
     }
@@ -60,4 +57,30 @@ public class SiteUser {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public int getScore() {
+        return score;
+    }
+    public void setScore(int score) {
+        this.score = score;
+    }
+    public String getSex() {
+        return sex;
+    }
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+    public Boolean getWorker() {
+        return worker;
+    }
+    public void setWorker(Boolean worker) {
+        this.worker = worker;
+    }
+    
+    
 }
