@@ -20,5 +20,5 @@ public interface SpringDataJpaUserRepository extends JpaRepository<SiteUser, Lon
 
     List<SiteUser> findByScore(int Score);
 
-    
+    List<SiteUser> findByWorker(Boolean worker);
 }

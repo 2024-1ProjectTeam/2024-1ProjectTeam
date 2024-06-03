@@ -13,4 +13,5 @@ public interface UserRepository {
     Optional<SiteUser> findByEmail(String email);
     Optional<SiteUser> findByPhone(String phone);
     List<SiteUser> findByScore(int Score);
+    List<SiteUser> findByworker(boolean worker);
 }

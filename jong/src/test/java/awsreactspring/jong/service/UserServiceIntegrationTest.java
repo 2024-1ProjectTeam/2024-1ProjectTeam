@@ -208,7 +208,7 @@ public class UserServiceIntegrationTest {
         String Check5 = userService.join(testuser);
         
         //간병인만 모은 DB가져옴
-        List<SiteUser> users = userService.findWorkers(true);
+        List<SiteUser> users = userService.Workers(true);
 
         //매칭 점수 매기기
         matchingService.matchingScore(users, testuser);

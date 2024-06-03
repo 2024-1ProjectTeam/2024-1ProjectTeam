@@ -66,7 +66,11 @@ public class UserService {
             .ifPresent(m -> {throw new IllegalStateException("이미 존재하는 전화번호입니다.");});
     }
 
-    // public List<SiteUser> Workers(boolean ){
-    // }
+    public List<SiteUser> Workers(boolean check){
+
+        List<SiteUser> workers =  userRepository.findByworker(check);
+
+        return workers;
+    }
 
 }
