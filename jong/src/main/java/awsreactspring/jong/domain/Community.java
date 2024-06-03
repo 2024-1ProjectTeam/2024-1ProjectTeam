@@ -11,13 +11,12 @@ import jakarta.persistence.Id;
 @Entity
 public class Community {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long userid; //이거 필요있나싶긴함. 이거 필요없으면 postid를 id로바꾸고 service랑 다 수정다시해야함. 금방하는것. id가 기본 위의 애너테이션을 통해 자동이므로...
     Long postid;
+    Long userid; //이거 필요있나싶긴함. 이거 필요없으면 postid를 id로바꾸고 service랑 다 수정다시해야함. 금방하는것. id가 기본 위의 애너테이션을 통해 자동이므로...
     @Column(length = 20)
     String title;
     @Column(columnDefinition = "TEXT")
     String content;
-    boolean completed;
     LocalDateTime createdtTime = LocalDateTime.now();
 
     public LocalDateTime getCreatedtTime() {
@@ -26,10 +25,10 @@ public class Community {
     public void setCreatedtTime(LocalDateTime createdtTime) {
         this.createdtTime = createdtTime;
     }
-    public Long getid() {
+    public Long getuserid() {
         return userid;
     }
-    public void setid(Long userid) {
+    public void setuserid(Long userid) {
         this.userid = userid;
     }   
 
@@ -47,14 +46,6 @@ public class Community {
 
     public void setContent(String content){
         this.content = content;
-    }
-
-    public boolean getCompleted(){
-        return completed;
-    }
-
-    public void setCompleted(boolean completed){
-        this.completed = completed;
     }
     
     public Long getpostid() {

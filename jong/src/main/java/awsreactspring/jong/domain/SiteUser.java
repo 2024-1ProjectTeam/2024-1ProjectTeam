@@ -15,32 +15,9 @@ public class SiteUser {
     String password;
     String name;
     String birth;
-    String Sex;
     String address;
     String phone;
-    boolean worker;
-    int score;
 
-
-    
-    public String getSex() {
-        return Sex;
-    }
-    public void setSex(String sex) {
-        Sex = sex;
-    }
-    public int getScore() {
-        return score;
-    }
-    public void setScore(int score) {
-        this.score = score;
-    }
-    public boolean isWorker() {
-        return worker;
-    }
-    public void setWorker(boolean worker) {
-        this.worker = worker;
-    }
     public Long getid() {
         return id;
     }
@@ -84,4 +61,3 @@ public class SiteUser {
         this.phone = phone;
     }
 }
-

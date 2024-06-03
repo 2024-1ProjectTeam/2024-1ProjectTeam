@@ -4,16 +4,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.NoSuchElementException;
+>>>>>>> 2ae52a74001347dfa8dbe1bec8e6fce254b0db56
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import awsreactspring.jong.domain.SiteUser;
-import awsreactspring.jong.repository.UserRepository;
+import awsreactspring.jong.domain.Comment;
+import awsreactspring.jong.domain.Community;
+import awsreactspring.jong.repository.*;
+import awsreactspring.jong.service.*;
 
 @SpringBootTest
 @Transactional
@@ -22,6 +30,12 @@ public class UserServiceIntegrationTest {
     @Autowired UserService userService;
     @Autowired MatchingService matchingService;
     @Autowired UserRepository userRepository;
+
+    @Autowired CommunityService communityService;
+    @Autowired CommunityRepository communityRepository;
+
+    @Autowired CommentService commentService;
+    @Autowired CommentRepository commentRepository;
 
     @Test
     @Commit
@@ -116,6 +130,7 @@ public class UserServiceIntegrationTest {
 
         userService.changeUser(user);
     }
+<<<<<<< HEAD
     @Test
     void 함수테스트() throws Exception{
 
@@ -210,6 +225,9 @@ public class UserServiceIntegrationTest {
         }
 
     }
+=======
+
+>>>>>>> 2ae52a74001347dfa8dbe1bec8e6fce254b0db56
     @Test
     @Commit
     void 게시판생성() throws Exception{
@@ -220,12 +238,20 @@ public class UserServiceIntegrationTest {
 
         //when
         Community saveCommunity = communityService.saveCommunity(community);
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 2ae52a74001347dfa8dbe1bec8e6fce254b0db56
         //then
         System.out.println(saveCommunity);
     }
 
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 2ae52a74001347dfa8dbe1bec8e6fce254b0db56
     // @Test
     // void 게시판수정() throws Exception{
     //     Community existingCommunity = new Community();
@@ -239,9 +265,15 @@ public class UserServiceIntegrationTest {
     //     //Community changeCommunity = communityService.changeCommunity(Long postid, Community );
     //     communityService.changeCommunity(existingCommunity.getuserid(), existingCommunity);
 
+<<<<<<< HEAD
 
     //     //communityService.changeCommunity(Long postid, Community changedCommunity);
 
+=======
+        
+    //     //communityService.changeCommunity(Long postid, Community changedCommunity);
+        
+>>>>>>> 2ae52a74001347dfa8dbe1bec8e6fce254b0db56
     // }
     @Test
     @Commit
@@ -254,6 +286,7 @@ public class UserServiceIntegrationTest {
 
     //when
         communityService.changeCommunity(existingCommunity.getpostid(), existingCommunity);
+<<<<<<< HEAD
 }
 
 
@@ -354,4 +387,111 @@ public class UserServiceIntegrationTest {
 
         commentService.deleteComment(1L);
     }
+=======
+>>>>>>> 2ae52a74001347dfa8dbe1bec8e6fce254b0db56
 }
+
+
+    // public void deleteCommunity(Long postid) {    // 게시글 아이디를 이용하여,삭제
+    //     Optional<Community> existingCommunityOptional = communityRepository.findByPostId(postid);
+    //     Community existingCommunity = existingCommunityOptional.orElseThrow(() -> new NoSuchElementException("해당 ID의 게시글이 존재하지 않습니다."));
+        
+    //     communityRepository.delete(existingCommunity);;
+    // }
+    
+
+    @Test
+    @Commit
+    void 게시판삭제() throws Exception{
+
+        //given
+        Community existingCommunity = new Community();
+        existingCommunity.setpostid(5L);
+        
+
+        //when
+        communityService.deleteCommunity(5L);
+
+        //then
+       
+    }
+
+    @Test
+    @Commit
+    void 게시판제목으로조회() throws Exception{
+        
+        //given
+        String title = "게시판";
+    
+        //when
+        List<Community> communities = communityRepository.findByTitleContaining(title);
+
+        //then
+        if(communities.isEmpty()){
+            throw new IllegalStateException("해당하는 게시판이 존재하지 않음");
+        }else{
+            
+            System.out.println(communities);
+        }
+
+
+    }
+
+    @Test
+    void 게시판내용으로조회() throws Exception{
+        
+        //given
+        String content = "게시판";
+    
+        //when
+        List<Community> communities = communityRepository.findByTitleContaining(content);
+
+        //then
+        if(communities.isEmpty()){
+            throw new IllegalStateException("해당하는 게시판이 존재하지 않음");
+        }else{
+            
+            System.out.println(communities);
+        }
+
+
+    }
+
+    @Test
+    void 전체게시판조회() throws Exception{
+
+        List<Community> communities = communityRepository.findAll();
+
+
+        System.out.println(communities);
+
+    }
+
+    @Test
+    @Commit
+    void 댓글생성() throws Exception{
+        Comment comment = new Comment();
+
+        comment.setContent("아니 왜 안돼는거야!!!!!!!!!");
+
+        Comment saveComment = commentService.saveComment(comment);
+
+        System.out.println(saveComment);
+
+    }
+
+    @Test
+    @Commit
+    void 댓글삭제() throws Exception{
+
+        Comment existingComment = new Comment();
+
+
+        commentService.deleteComment(1L);
+    }
+
+
+
+    
+}
+

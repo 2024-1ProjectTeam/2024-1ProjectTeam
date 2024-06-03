@@ -44,24 +44,24 @@ public class CommentController {
 
     // 게시판 id를 통해서 댓글조회
     @GetMapping("api/Community/Comment/{postid}")
-    public ResponseEntity<List<Comment>> GetCommentByPostId(@PathVariable Long postid){
-        List<Comment> comment = commentService.findCommentByPostId(postid);
+    public ResponseEntity<List<Comment>> GetCommentByPostId(@PathVariable Community community){
+        List<Comment> comment = commentService.findCommentByPostId(community);
         return ResponseEntity.ok(comment);
     }
 
-    //유저id를 통해 댓글조회
-    @GetMapping("api/Community/Comment/{userid}")
-    public ResponseEntity<List<Comment>> GetCommentByUserId(@PathVariable Long userid){
-        List<Comment> comment = commentService.findCommentByUserID(userid);
-        return ResponseEntity.ok(comment);
-    }
+    // //유저id를 통해 댓글조회
+    // @GetMapping("api/Community/Comment/{userid}")
+    // public ResponseEntity<List<Comment>> GetCommentByUserId(@PathVariable Long userid){
+    //     List<Comment> comment = commentService.findCommentByUserID(userid);
+    //     return ResponseEntity.ok(comment);
+    // }
 
     //댓글 삭제
-    @DeleteMapping("/api/Community/Comment/{commentid}") // 삭제
-    public ResponseEntity<Community> deleteCommunity(@PathVariable Long commentid){
-        commentService.deleteComment(commentid);
-        return ResponseEntity.noContent().build();
-    }
+    // @DeleteMapping("/api/Community/Comment/{commentid}") // 삭제
+    // public ResponseEntity<Community> deleteCommunity(@PathVariable Long commentid){
+    //     commentService.deleteComment(commentid);
+    //     return ResponseEntity.noContent().build();
+    // }
 
 
 }
