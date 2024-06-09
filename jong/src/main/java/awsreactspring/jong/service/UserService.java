@@ -73,4 +73,13 @@ public class UserService {
         return workers;
     }
 
+    public SiteUser findById(long id){
+        Optional<SiteUser> User = userRepository.findById(id);
+        if(!User.isEmpty()){
+            SiteUser user = User.get();
+            return user;
+        }
+        return null;
+    }
+
 }

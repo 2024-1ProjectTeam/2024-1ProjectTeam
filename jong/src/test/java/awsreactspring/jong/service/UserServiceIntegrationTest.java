@@ -3,6 +3,7 @@ package awsreactspring.jong.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -15,6 +16,7 @@ import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import awsreactspring.jong.domain.SiteUser;
+import awsreactspring.jong.domain.Workinglist;
 import awsreactspring.jong.domain.Comment;
 import awsreactspring.jong.domain.Community;
 import awsreactspring.jong.repository.*;
@@ -33,6 +35,9 @@ public class UserServiceIntegrationTest {
 
     @Autowired CommentService commentService;
     @Autowired CommentRepository commentRepository;
+
+    @Autowired WorkinglistService workinglistService;
+    @Autowired WorkinglistRepository workinglistRepository;
 
     @Test
     @Commit
@@ -365,6 +370,90 @@ public class UserServiceIntegrationTest {
 
         commentService.deleteComment(1L);
     }
+
+    @Test
+    @Commit
+    void 아침근무일지작성() throws Exception{
+        Workinglist workinglist = new Workinglist();
+
+        workinglist.setMorning("아침 식사 진행 완료 및 약 복용 완료");
+        workinglist.setIssue("특이사항 없음.");
+
+        Workinglist saveWorkinglist = workinglistService.saveworkinglist(workinglist);
+    }
+
+    @Test
+    @Commit
+    void 점심근무일지작성() throws Exception{
+        Workinglist workinglist = new Workinglist();
+
+        workinglist.setLunch("점심 식사 진행 완료 및 약 복용 완료");
+        workinglist.setIssue("특이사항 없음.");
+
+        Workinglist saveWorkinglist = workinglistService.saveworkinglist(workinglist);
+    }
+
+    @Test
+    @Commit
+    void 저녁근무일지작성() throws Exception{
+        Workinglist workinglist = new Workinglist();
+
+        workinglist.setDinner("아침 식사 진행 완료 및 약 복용 완료");
+        workinglist.setIssue("특이사항 없음.");
+
+        Workinglist saveWorkinglist = workinglistService.saveworkinglist(workinglist);
+    }
+
+    @Test
+    @Commit
+    void 날짜조회() throws Exception{
+        LocalDate date = LocalDate.now();
+
+        List<Workinglist> workinglists = workinglistRepository.findByDate(date);
+
+        if(workinglists.isEmpty()){
+            throw new IllegalStateException("해당하는 일지 존재 하지않음.");
+        }else{
+            System.out.println(workinglists);
+        }
+    }
+
+    @Test
+    @Commit
+    void 날짜기간조회() throws Exception{
+        LocalDate startDate = LocalDate.of(2024, 6, 3);
+        LocalDate endDate = LocalDate.of(2024, 6, 4);
+
+        List<Workinglist> workinglists = workinglistRepository.findByDateBetween(startDate, endDate);
+
+        if(workinglists.isEmpty()){
+            throw new IllegalStateException("해당 기간의 일지 존재하지않음");
+        }else{
+            System.out.println(workinglists);
+        }
+    }
+
+    // @Test
+    // @Commit
+    // void 게시판제목으로조회() throws Exception{
+        
+    //     //given
+    //     String title = "게시판";
+    
+    //     //when
+    //     List<Community> communities = communityRepository.findByTitleContaining(title);
+
+    //     //then
+    //     if(communities.isEmpty()){
+    //         throw new IllegalStateException("해당하는 게시판이 존재하지 않음");
+    //     }else{
+            
+    //         System.out.println(communities);
+    //     }
+
+
+    // }
+
 
 
 
