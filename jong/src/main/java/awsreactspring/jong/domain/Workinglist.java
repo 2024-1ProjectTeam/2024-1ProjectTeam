@@ -33,9 +33,13 @@ public class Workinglist {
     
     String createdTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
+    LocalDate date;
+
     @ManyToOne
     @JoinColumn(name = "site_user_id")
     private SiteUser siteuser;
+
+
 
     public Long getWorkinglistid() {
         return workinglistid;
@@ -91,6 +95,14 @@ public class Workinglist {
 
     public void setMorning(String morning) {
         this.Morning = morning;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
 }

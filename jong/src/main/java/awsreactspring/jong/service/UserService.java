@@ -28,16 +28,20 @@ public class UserService {
         }
     }
 
-    public void login(SiteUser user){
+    public boolean login(SiteUser user){
         Optional<SiteUser> optionalUser = userRepository.findByEmail(user.getEmail());
         if(optionalUser.isEmpty()){
-            throw new IllegalStateException("이메일이 없습니다.");
+            // throw new IllegalStateException("이메일이 없습니다.");
+            return false;
         }
 
         SiteUser findUser = optionalUser.get();
         if(!findUser.getPassword().equals(user.getPassword())){
-            throw new IllegalStateException("비밀번호가 일치 하지 않음.");
+            // throw new IllegalStateException("비밀번호가 일치 하지 않음.");
+            return false;
         }
+
+        return true;
 
     }
 
